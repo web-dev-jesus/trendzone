@@ -1,0 +1,25 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  nfl-data-sync:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - MONGO_DATABASE=${MONGO_DATABASE}
+      - SPORTSDATA_API_KEY=${SPORTSDATA_API_KEY}
+      - SEASON=${SEASON}
+      - SEASON_TYPE=${SEASON_TYPE}
+      - LOG_LEVEL=${LOG_LEVEL}
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - nfl-network
+
+networks:
+  nfl-network:
+    driver: bridge
