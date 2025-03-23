@@ -1,4 +1,4 @@
-module trendzone
+module github.com/web-dev-jesus/trendzone
 
 go 1.22.2
 
